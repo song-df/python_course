@@ -1,0 +1,55 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Waterfall Layout</title>
+    <!-- Include Masonry CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.min.css">
+    <!-- Include Masonry JS (Optional) -->
+</head>
+<style>
+    /* Optional CSS for the waterfall layout */
+.grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid-item {
+    width: 33.33%; /* You can adjust the width as needed */
+    padding: 8px;
+}
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+</style>
+<body>
+    <div class="grid">
+        {% for image in images %}
+        <div class="grid-item">
+            <img src="{{ url_for('serve_image', filename=image) }}" alt="Image">
+        </div>
+        {% endfor %}
+    </div>
+    <!-- Initialize Masonry (Optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var grid = document.querySelector('.grid');
+            var masonry;
+
+            imagesLoaded(grid, function () {
+                masonry = new Masonry(grid, {
+                    itemSelector: '.grid-item',
+                    columnWidth: '.grid-sizer',
+                    percentPosition: true
+                });
+            });
+        });
+    </script>
+</body>
+</html>

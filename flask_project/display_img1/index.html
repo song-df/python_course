@@ -1,0 +1,12 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Local Image Viewer</title>
+</head>
+<body>
+    <h1>My Local Image</h1>
+    <img src="{{ url_for('serve_image', filename='tiger0.jpg') }}" alt="My Image1">
+    <img src="{{ url_for('serve_image', filename='tiger1.jpg') }}" alt="My Image2">
+</body>
+</html>
